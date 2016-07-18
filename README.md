@@ -1,6 +1,19 @@
 # git-pivotal
 A webhook that listens to Git events and push changes to Pivotal
 
+## setup
+- `clone repo`
+- `gem install bundle`
+- `bundle install`
+- `cp config/secrets.yml.sample config/secrets.yml`
+-  change `enviroment` and `port` from `lib/server.rb` file
+
+```
+set :enviroment, :production
+set :port, 8080
+```
+
+- 
 
 #### sample request 
 ```
