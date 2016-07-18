@@ -17,6 +17,17 @@ set :port, 8080
 
 - Create a webhook on git from this url `https://github.com/:username/:repo/settings/hooks`
 
+### Usage Rules:
+- For now it will only update the ticket's status to `Delivered` if the PR is merged.
+- The ticket number HAS to be the first digits in the PR Title 
+
+```ruby
+"[Finishes #12345] Complex task number 123"    # Correct
+"Task number 213 [Finishes #12345]" # Wrong
+"[#12345] Complex task number 123"    # Correct
+"12345 Complex task number 123"    # Correct
+```
+
 ---------------
 ### sample request for testing the webhook
 ```
@@ -434,4 +445,4 @@ curl -X POST -H "Accept: application/json" -H "Content-Type: application/json" -
 }' "http://localhost:4567/pr"
 
 ```
-
+*You might need to change the pivotal ID in the title*
