@@ -14,7 +14,8 @@ set :port, 8080
 ```
 
 
-#### sample request 
+---------------
+### sample request 
 ```
 curl -X POST -H "Accept: application/json" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: d1e2364e-3b63-a954-f0b6-2bdaf1e2c0cc" -d '{
   "action": "closed",
