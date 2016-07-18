@@ -2,12 +2,28 @@ require 'sinatra'
 require 'json'
 require_relative 'middleware/git'
 require_relative 'middleware/pivotal'
+require "sinatra/reloader" if development?
+use Rack::Logger
 
 post '/pr' do
-  p "posting...."
+  # handle webhook payload
   payload = JSON.parse(request.body.read)
+  # extract information from payload
   @git = Middleware::Git.new payload
   return "pull request not merged" if @git.nil?
-  @pivotal = Middleware::Pivotal.new 
-  @pivotal.pr @git
+
+  # Send PR information to Pivotal handler
+  @pivotal = Middleware::Pivotal.new
+  begin
+    res = @pivotal.pr @git.pr
+  rescue Exception => e
+    return "Error occurred: #{e.message}"
+  end
+
+  # notify client
+  if res[:status] != 200
+    "Error occurred: #{res[:error]}"
+  else
+    res[:status]
+  end
 end
