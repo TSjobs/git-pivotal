@@ -26,7 +26,7 @@ post '/pr' do
   end
 
   # notify client
-  if res[:status] != 200
+  if res.nil? || res[:status] != 200
     "Error occurred: #{res[:error]}"
   else
     res[:status]
