@@ -13,7 +13,6 @@ set :enviroment, :production
 set :port, 8080
 ```
 
-- 
 
 #### sample request 
 ```
