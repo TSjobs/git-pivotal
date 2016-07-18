@@ -1,4 +1,4 @@
-# git-pivotal
+# Git-Pivotal
 A webhook that listens to Git events and push changes to Pivotal
 
 ## setup
