@@ -6,16 +6,19 @@ A webhook that listens to Git events and push changes to Pivotal
 - `gem install bundle`
 - `bundle install`
 - `cp config/secrets.yml.sample config/secrets.yml`
+-  Add pivotal API token , which you get from `settings > profile` in pivotal app
 -  change `enviroment` and `port` from `lib/server.rb` file
 
 ```
 set :enviroment, :production
 set :port, 8080
 ```
+- `ruby lib/gitpivotal/server.rb` to run the server
 
+- Create a webhook on git from this url `https://github.com/:username/:repo/settings/hooks`
 
 ---------------
-### sample request 
+### sample request for testing the webhook
 ```
 curl -X POST -H "Accept: application/json" -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: d1e2364e-3b63-a954-f0b6-2bdaf1e2c0cc" -d '{
   "action": "closed",
